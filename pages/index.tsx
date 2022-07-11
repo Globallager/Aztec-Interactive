@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Image from 'next/image'
 import { ethers } from "ethers";
 import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
 import { useEffect, useState } from "react";
@@ -22,6 +23,8 @@ import {
   depositEthToAztec,
   registerAccount,
 } from "./utils";
+
+import aztecAccountPic from "../public/Aztec Account Structure.png";
 
 const Home: NextPage = () => {
   const [isConnected, setIsConnected] = useState(false);
@@ -215,8 +218,8 @@ const Home: NextPage = () => {
             // Step 1 - Connect Metamask
             <div>
               <h1>Connect Metamask</h1>
-              <p>Welcome to Aztec Interactive. This tutorial will walk you through the process of using Aztec. Before we begin, you would need a Metamask wallet funded with &gt;0.02 ETH on the Goerli Testnet.</p>
-              <p>Once that is ready, connect your wallet with the button below.</p>
+              <p>Welcome to Aztec Interactive. This tutorial will walk you through the process of using Aztec.</p>
+              <p>Before we begin, you would need a Metamask wallet funded with &gt;0.025 ETH on the Goerli Testnet. Once that is ready, connect your wallet with the button below.</p>
               <button className="bg-gradient-to-r from-pink-500 to-yellow-500" onClick={() => connect()}>Connect</button>
             </div>
           )
@@ -260,9 +263,9 @@ const Home: NextPage = () => {
               // Step 5 - Register Account
               <div>
                 <h1>Register Account</h1>
-                <p>At this point, account information from previous steps were all generated locally off-chain. To fully enjoy the features Aztec offers, you would have to register an account on Aztec using such information.</p>
-                <p>The registration ties a human-readable account alias (≤20 alphanumeric, lowercase characters) to your privacy keys and spending public key, helpful for easing the value transfer UX on Aztec. In production, the user should be offered the choice of a preferred alias, but for testing purpose it is hardcoded as "test232" here.</p>
-                <p>The registration also requires ETH value attached to the transaction. The value consists of a minimum deposit of 0.01 ETH (later spendable on Aztec) plus the Aztec network fee for registering the account. In production, the network fee should be set as NEXT_ROLLUP, which batches the user's registration into the next rollup batch at the benefit of lower fees. Yet for testing purpose INSTANT fees is used here instead.</p>
+                <p>With both privacy keys and spending keys generated, you are now ready to register an account on Aztec.</p>
+                <p>The registration ties a human-readable account alias (≤20 alphanumeric, lowercase characters) to your privacy keys and spending public key, helpful for easing the value transfer UX on Aztec. In production the user should be offered the choice of a preferred alias, but for testing purpose it is hardcoded as "test232" here.</p>
+                <p>The registration also requires ETH value attached to the transaction. The value consists of a minimum deposit of 0.01 ETH (later spendable on Aztec) plus the Aztec network fee for registering the account. In production the network fee should be set as NEXT_ROLLUP when using the SDK, which batches the user's registration with other users' transactions into the next rollup batch at the benefit of lower fees. For testing purpose INSTANT fees is used here instead.</p>
                 <p>Now that your keys are ready, you can register your Aztec account with the button below.</p>
                 <button onClick={() => registerNewAccount()}>Register Account</button>
               </div>
@@ -274,6 +277,11 @@ const Home: NextPage = () => {
               <div>
                 <h1>Generate Spending Key Pair</h1>
                 <p>Similar to privacy keys, a separate set of spending key pair can be generated through signing a different message. This key pair is used to spend your Aztec value notes.</p>
+                <Image
+                  src={aztecAccountPic}
+                  alt="Aztec Account Structure"
+                  className="rounded-lg"
+                />
                 <p>The separation of the key required to decrypt notes (privacy key) and the key required to spend notes (spending key) theoretically enables users to take advantage of account abstraction. A user for example may generate multiple spending keys to be used on multiple devices respectively, avoiding the risk of sharing the underlying Ethereum account on different devices.</p>
                 <p>Aztec value notes are also only spendable by the specific note receiver's spending key marked when the note was created. Using multiple spending keys across environments can also be beneficial to limiting risks against fund losses due to environmental compromisation.</p>
                 <p>At this moment however generating one set of spending keys is encouraged for simple UX.</p>
