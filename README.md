@@ -33,7 +33,7 @@ yarn
 yarn dev
 ```
 
-Once hosted, you can access the tutorial through opening [http://localhost:3000](http://localhost:3000) in your browser.
+Once hosted, you can access the tutorial through [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Learn More
 
