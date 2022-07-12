@@ -12,6 +12,8 @@ The tutorial works on the Goerli testnet and covers:
 
 The tutorial is accessible on: (to add hyperlink)
 
+![Screenshot](https://i.imgur.com/ObrAloU.png)
+
 ## Local Hosting
 
 ### Prerequisites
