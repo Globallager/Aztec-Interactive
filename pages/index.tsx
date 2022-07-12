@@ -178,7 +178,7 @@ const Home: NextPage = () => {
         {hasMetamask ? (
           isConnected ? (
             <div>
-              <h1>Account Info</h1>
+              <h1>Local Info</h1>
               <table className="break-all">
                 <thead>
                   <tr>
@@ -231,9 +231,9 @@ const Home: NextPage = () => {
           <div>
             <button className="bg-gradient-to-r from-gray-400 to-gray-600" onClick={() => console.log("sdk", sdk)}>[Debug] Log SDK</button>
             {accountPrivateKey && !account0 ? (
-              // Step 3 - Explain Privacy Keys + Update Account Balance
+              // Step 3 - Explain Privacy Keys + Get Account Info
               <div>
-                <h1>Update Account Balance</h1>
+                <h1>Get Account Info</h1>
                 <p>Your privacy key pair is now generated. This key pair is used to decrypt your Aztec value notes, enabling you to retrieve your account balance on Aztec while maintaining such information encrypted from public knowledge (hence privacy).</p>
                 <p>Now that your privacy key pair is ready, you can check your ETH balance available on Aztec with the button below. You should see "zkETH Balance" in your account info above updated once the process completes. If this is your first time interacting with Aztec and no previous deposits were made, you should see a 0 balance.</p>
               </div>
@@ -242,7 +242,7 @@ const Home: NextPage = () => {
             )}
             {accountPrivateKey ? (
               <button onClick={() => initUsersAndPrintBalances()}>
-                Update zkETH Balance
+                Get Account Info
               </button>
             ) : (
               // Step 2 - Generate Privacy Key Pair
